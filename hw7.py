@@ -1,6 +1,7 @@
-Consider the recurrence relation an=n2an−1−an−2 with initial conditions a0=1 and a1=2. Write a Python 
-function called sequence_slayer that takes a nonnegative integer argument N less than 50 and returns 
-the N-th term in the sequence defined by the above recurrence relation. 
+# Consider the recurrence relation a_n = n^(2)*a_(n−1) − a_(n−2) with initial conditions a_0 = 1 and a_1 = 2. 
+# Write a Python function called sequence_slayer that takes a nonnegative integer argument N less than 50 and returns 
+# the N-th term in the sequence defined by the above recurrence relation. 
+	
 	def sequence_slayer(N):
 	    x = []
 	    x.append(1)
@@ -13,8 +14,9 @@ the N-th term in the sequence defined by the above recurrence relation.
 	    #return that N
 	    return (x[N])
 
-Write a Python function called first_D_digit_Lucas that takes an integer argument D less than 30 and returns 
-the first D-digit Lucas number.
+# Write a Python function called first_D_digit_Lucas that takes an integer argument D less than 30 and returns 
+# the first D-digit Lucas number.
+	
 	def first_D_digit_Lucas(D):
 	    x = []
 	    x.append(2)
@@ -30,8 +32,9 @@ the first D-digit Lucas number.
 	    #return the i-th one where it is greater
 	    return (x[i])
 
-Write a Python function called common_decency that takes a positive integer argument N and returns a Boolean 
-(True/False) representing whether or not the input integer is a decent number.
+# Write a Python function called common_decency that takes a positive integer argument N and returns a Boolean 
+# (True/False) representing whether or not the input integer is a decent number.
+	
 	def common_decency(N):
 	    count3 = 0
 	    count5 = 0
