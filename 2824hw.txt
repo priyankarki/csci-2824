@@ -1,0 +1,238 @@
+//HW 1
+Write a Python function ParityParty() that takes in a nonnegative integer 𝚍 and returns a list: the first element of the output list is a 0 if the number d is even, and 1 if d is odd, the second element of the output list is d/2 if d is even, and (d−1)/2 if d is odd.
+	
+	import array
+	def ParityParty(d):
+	    arr = []
+	    if d%2 == 0:
+	        arr.append(0)
+	        arr.append(int(d/2))
+	    else:
+	        arr.append(1)
+	        arr.append(int((d-1)/2))
+	    return arr
+
+
+
+Write a Python function DecToBin() that takes in a nonnegative integer 𝚍 and returns a Python list of 0's and 1's corresponding to the binary representation of 𝚍.  
+
+	def DecToBin(d):
+    arr = []
+    if d == 0:
+        arr.append(0)
+    while (d != 0):
+        if d % 2 == 0:
+            arr.insert(0, 0)
+            d = d/2
+        else:
+            arr.insert(0, 1)
+            d = (d-1)/2
+    return arr
+
+//HW 3
+Write a Python function D(i,n) that takes as input i and n, and returns a single logical value (True or False) representing the truth value of D(i,n).
+	def D(i,n):
+    A = [4, 8, 15, 16, 23, 42]
+    
+    if(A[i] % n == 0):
+        return True
+    else:
+        return False
+
+Write a Python function ABCs that takes in two lists of the same length, 𝚕𝚎𝚝𝚝𝚎𝚛𝚜 and 𝚗𝚞𝚖𝚋𝚎𝚛𝚜, and returns a single logical value (True or False) representing the truth value of the following proposition.
+	def ABCs(letters, numbers):
+    out = False
+    vowels = ['A','E','I',"O",'U','Y']
+    for i in range(len(letters)):
+        if(numbers[i] % 2 == 0):
+            if letters[i] in vowels:
+                out = True
+    return out
+
+Write a function 𝚌𝚑𝚎𝚌𝚔_𝚙𝚛𝚘𝚙𝚘𝚜𝚒𝚝𝚒𝚘𝚗 that takes as its sole argument a Python list of between 0 and 50 integers and returns a boolean (i.e. 𝚃𝚛𝚞𝚎 or 𝙵𝚊𝚕𝚜𝚎)  representing the truth value of the the proposition ∀x[E(x)→∃y(x=2y)], where here the proposition E(x) means "x is even" and the list of integers is the domain for x and y.
+	def check_proposition(numbers):
+    out = True
+    for i in numbers:
+        if (i % 2 == 0):
+            y = i/2
+            if (y not in numbers):
+                out = False
+    return out
+
+//HW 5
+Write a Python function check_subset() that takes in two Python lists, representing sets of integers, A and B. Your function should return a single Boolean (True or False) for whether or not either set is a subset of the other. A and B are sets, and not necessarily non-empty.
+	def check_subset(A, B):
+    if len(A) == 0 or len(B) == 0:
+        return True
+    return (set(B) < set(A))
+
+
+Write a Python function cardinality() that takes in three Python set objects, representing sets of between 0 and 50 integers, A, B, and U. Your function should return a single non-negative integer value for the cardinality of the set below. A and B are subsets (not necessarily proper) of the universal set U.
+	def cardinality(A, B, U):
+	    sub = A.difference(B)
+	    diff = U.difference(sub)
+	    l = len(diff)
+	    return (2**l)
+
+//HW 7
+Consider the recurrence relation an=n2an−1−an−2 with initial conditions a0=1 and a1=2. Write a Python function called sequence_slayer that takes a nonnegative integer argument N less than 50 and returns the N-th term in the sequence defined by the above recurrence relation. 
+	def sequence_slayer(N):
+	    x = []
+	    x.append(1)
+	    x.append(2)
+	    
+	    #from 2 to N, continue adding
+	    for i in range(2, N+1):
+	        x.append(((i**2)*(x[i -1])) - x[i-2])
+	    
+	    #return that N
+	    return (x[N])
+
+Write a Python function called first_D_digit_Lucas that takes an integer argument D less than 30 and returns the first D-digit Lucas number.
+	def first_D_digit_Lucas(D):
+	    x = []
+	    x.append(2)
+	    x.append(1)
+	    i = 1
+	    
+	    # while the function is less than 10, 100, etc
+	    # continue adding
+	    while (x[i] <= (10**(D-1))):
+	        i +=1
+	        x.append((x[i -1]) + x[i-2])
+
+	    #return the i-th one where it is greater
+	    return (x[i])
+
+Write a Python function called common_decency that takes a positive integer argument N and returns a Boolean (True/False) representing whether or not the input integer is a decent number.
+	def common_decency(N):
+	    count3 = 0
+	    count5 = 0
+	    
+	    #see if has 3 or 5
+	    if (N % 3 != 0) or (N % 5 != 0):
+	        return False
+
+	    x = str(N)
+	    for i in range(len(x)):
+	        if (x[i] == '3'):
+	            count3 += 1
+	        elif (x[i] == '5'):
+	            count5 += 1
+	    
+	    #check counts of 3 and 5
+	    if (count3 % 5 == 0) and (count5 % 3 == 0):
+	        return True
+	    else:
+	        return False
+
+//HW 9
+Write a Python function treasure_hunt that takes as arguments positive integers m, n and p and returns the number of valid configurations of the m×n grid world that follows the following rules.
+
+The "world" has m columns and n rows in it.
+There is one knight, one treasure chest and p≥0 dragon(s) in the grid-world.
+Dragons cannot share a square with anything else.
+The knight can share a square with anything.
+Dragons are indistinguishable from one another.
+	def treasure_hunt(m,n,p):
+	    drag = p
+	    squares = m*n
+	    remaining = squares
+	    dChoice = squares
+	    mult = drag
+	    if p == 0:
+	        return remaining*remaining
+	    else:
+	        while p != 1:
+	            p = p - 1
+	            mult = p*mult
+	        while drag != 0:
+	            drag = drag - 1
+	            remaining = remaining - 1
+	            if drag != 0:
+	                dChoice = dChoice*remaining
+	        return int(dChoice*remaining*remaining/mult)
+
+Write a Python function wrangle_rectangles that takes as arguments positive integers m and n and returns the number of distinct, non-degenerate rectangles in an integer grid with vertical lines at x=0,1,…,m and horizontal lines at y=0,1,…,n. 
+	def wrangle_rectangles(m,n):
+	    horiz = n +1
+	    vert = m+1
+	    return int((m*n*horiz*vert)/4)
+
+//HW 11
+Write a Python function filterFun to classify an input message as spam or ham (not spam). In class, we went over how Bayes' theorem can be used to obtain probabilities for a given message being spam or ham, based on the presence of particular words. Here, we will do a simpler example based on numbers instead of words. Similarly to the example in class, we will assume that numbers are conditionally independent, given the class (spam/ham) of email.
+
+Input:
+
+message - a list of integers of length at least 1 and at most 100. This is the message we must classify as spam or ham.
+spam - a list of lists of integers that corresponds to messages we have classified as spam.  Each sub-list corresponds to a different message, all of which are known to be spam. Length of spam will be at least 1.
+ham - a list of lists of integers that corresponds to messages we have classified as ham.  Each sub-list corresponds to a different message, all of which are known to be ham. Length of ham will be at least 1.
+Only consider each number once; do not double count if a number is repeated within a message.
+Output:
+
+Boolean (True/False) for whether the input message should be classified as spam. This should be based only on whether the message is more or less likely to be spam than ham. In the event of a tie, classify the message as spam.
+
+	def filterFun(message,spam,ham):
+	    numMessage = len(message)
+	    numSpam = len(spam)
+	    numHam = len(ham)
+	    
+	    totalMessage = numMessage + numSpam + numHam
+	    probS = numSpam / totalMessage
+	    probHam = numHam / totalMessage
+	    cSpam = 1
+	    cHam = 1
+	    
+	    for i in message:
+	        spamNum = count(i, spam)
+	        cSpam = cSpam * (spamNum/numSpam)
+	        hamNum = count(i, ham)
+	        cHam = cHam*(hamNum/numHam)
+	    
+	    if cSpam >= cHam:
+	        return True
+	    else:
+	        return False
+        
+	def count(check, spam):
+	    num = 0
+	    for i in spam:
+	        i = list(set(i))
+	        for j in i:
+	            if j == check:
+	                num += 1
+	    return num
+
+Write a Python function binom_product that takes integer arguments a and b and positive integer argument n and returns the product of the coefficients in the expansion of (ax+by)^n.
+	def fact(n):
+	    a = 1
+	    for i in range(2, n+1):
+	        a *= i
+	    return a
+	    
+	def binom_product(a,b,n):
+	    pro = 1
+	    for k in range(0, n+1):
+	        pro *= ( fact(n) / ( fact(n-k)* fact(k) ) )* pow(a, n-k) * pow(b,k)
+	    return pro
+    
+Write a Python function mega_digit that takes positive integer arguments N and k and returns the "mega digit" of P = the number N repeated k times.
+
+For example, if N=123 and k=3, then your function should return the mega digit of P=123123123.
+
+What is a "mega digit" you ask?  Great question!
+
+If P is a single digit (1≤P≤9), then the mega digit of P is equal to P.
+If P is more than one digit (P≥10), then the mega digit of P is equal to the mega digit of the sum of the digits of P.
+	def mega_digit(n, k):
+	    total = 0
+	    while n > 0:
+	        total += n%10
+	        n //= 10
+	    total *= k
+	    if total < 10:
+	        return total
+	    else:
+	        return mega_digit(total, 1)
+
+
