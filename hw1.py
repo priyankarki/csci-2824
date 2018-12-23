@@ -1,4 +1,6 @@
-Write a Python function ParityParty() that takes in a nonnegative integer 𝚍 and returns a list: the first element of the output list is a 0 if the number d is even, and 1 if d is odd, the second element of the output list is d/2 if d is even, and (d−1)/2 if d is odd.
+# Write a Python function ParityParty() that takes in a nonnegative integer 𝚍 and returns a list: the first 
+# element of the output list is a 0 if the number d is even, and 1 if d is odd, the second element of the output 
+# list is d/2 if d is even, and (d−1)/2 if d is odd.
 	
 	import array
 	def ParityParty(d):
@@ -13,9 +15,10 @@ Write a Python function ParityParty() that takes in a nonnegative integer 𝚍 a
 
 
 
-Write a Python function DecToBin() that takes in a nonnegative integer 𝚍 and returns a Python list of 0's and 1's corresponding to the binary representation of 𝚍.  
+# Write a Python function DecToBin() that takes in a nonnegative integer 𝚍 and returns a Python list of 0's and 1's 
+# corresponding to the binary representation of 𝚍.  
 
-	def DecToBin(d):
+def DecToBin(d):
     arr = []
     if d == 0:
         arr.append(0)
